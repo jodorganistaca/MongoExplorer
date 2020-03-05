@@ -8,9 +8,10 @@ fetch("/databases")
     return response.json();
   })
   .then(function(myJson) {
-    var opt = document.createElement("option");
-    opt.appendChild( document.createTextNode("New Option Text") );
+    var opt;
     for(let name in myJson.databases){
+      opt = document.createElement("option");
+      opt.appendChild( document.createTextNode(myJson.databases[name].name) );
       opt.value = myJson.databases[name].name;
       selectDbs.appendChild(opt); 
       console.log(myJson.databases[name].name);
