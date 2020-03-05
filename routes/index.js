@@ -9,14 +9,7 @@ router.get("/", function(req, res, ) {
 });
 
 router.get("/test", (req, res) => {
-  mu.connect()
-    .then(client => 
-      mu.databases(client)
-        .then(dbs => {
-          console.log(dbs);
-          res.send("hola");
-        })
-    );
+  mu.databases().then(dbs => res.send(dbs)); 
 });
 
 module.exports = router;
