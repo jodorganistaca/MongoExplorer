@@ -10,6 +10,7 @@ router.get("/", function(req, res, ) {
     res.send(dbs);
     databases = dbs;
   });   
+  console.log(databases);
   res.render("index", { title: "Express", dbs: databases });
 });
 

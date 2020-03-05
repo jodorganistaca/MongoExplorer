@@ -1,16 +1,16 @@
 console.log("hola");
 
 const selectDocs = document.querySelector("#selectDocs");
-const selectDatabases = document.querySelector("#selectDbs");
 
-fetch("/")
+fetch("/databases")
   .then(function(response) {
-    console.log(response);
     return response.json();
   })
   .then(function(myJson) {
-    var opt = document.createElement('option');
-    opt.appendChild( document.createTextNode('New Option Text') );
-
+    var opt = document.createElement("option");
+    opt.appendChild( document.createTextNode("New Option Text") );
+    for(let name in myJson){
+      console.log(myJson[name]);
+    }
     console.log(myJson);
   });
