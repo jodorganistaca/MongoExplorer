@@ -5,10 +5,15 @@ const mu = require("../db/MongoUtils");
 
 /* GET home page. */
 router.get("/", function(req, res, ) {
-  res.render("index", { title: "Express" });
+  let databases;
+  mu.databases().then(dbs => {
+    res.send(dbs);
+    databases = dbs;
+  });   
+  res.render("index", { title: "Express", dbs: databases });
 });
 
-router.get("/test", (req, res) => {
+router.get("/databases", (req, res) => {
   mu.databases().then(dbs => res.send(dbs)); 
 });
 

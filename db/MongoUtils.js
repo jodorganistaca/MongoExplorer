@@ -8,10 +8,8 @@ function MongoUtils() {
   const mu = {};
 
   let hostname = "localhost",
-    port = 27017,
-    dbName = "test";
+    port = 27017;
 
-  mu.dbName = _ => (_ !== undefined ? ((dbName = _), mu) : dbName);
   mu.hostname = _ => (_ !== undefined ? ((hostname = _),mu) : hostname);
   mu.port = _ => (_ !== undefined ? ((port = _),mu) : port);
 
