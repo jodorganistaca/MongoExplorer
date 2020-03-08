@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 
 
 const clearSelectCollection = () =>{
@@ -7,14 +8,14 @@ const clearSelectCollection = () =>{
     select.options[i] = null;
   }
 };
-// eslint-disable-next-line no-unused-vars
+
 const fillCollections = () => {
   let selectDbs = document.querySelector("#selectDbs");
   let strDbs = selectDbs.options[selectDbs.selectedIndex].value;
   let selectDocs = document.querySelector("#selectDocs");
 
   clearSelectCollection();
-  console.log(strDbs);
+  console.log(strDbs); 
   
   fetch("/collections/"+strDbs)
     .then(function(response) {
@@ -30,5 +31,20 @@ const fillCollections = () => {
         opt.value = nameCol;
         selectDocs.appendChild(opt); 
       }
+    });
+};
+
+const fillDocuments = () => {
+  let selectDbs = document.querySelector("#selectDbs");
+  let strDbs = selectDbs.options[selectDbs.selectedIndex].value;
+  let selectDocs = document.querySelector("#selectDocs");
+  let strDocs = selectDocs.options[selectDocs.selectedIndex].value;
+  console.log("strDbs ", strDbs, " strDocs ", strDocs);
+  fetch("/documents/"+strDbs+`/${strDocs}`)
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(myJson) {
+      console.log(myJson);
     });
 };

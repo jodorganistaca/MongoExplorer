@@ -1,2 +1,37 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<form>
+    <div class="form-row">
+        <div class="form-group col-12 col-md-6">
+            <label for="formControlselectDbs">Databases</label>
+            <select class="form-control" id="selectDbs">
+                {{#each databases}}
+                <option value="{{this.name}}">
+                    {{this.name}}
+                </option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <button class="btn btn-primary" onclick="fillCollections()">
+                Update Collections
+            </button>
+        </div>
+        <div class="form-group">
+            <label for="formControlselectDocs">Collections</label>
+            <select class="form-control" id="selectDocs">
+            </select>
+        </div>
+        <div class="form-group col-md-6">
+            <button class="btn btn-primary" onclick="fillDocuments()">
+                Get Documents
+            </button>
+        </div>
+    </div>
+</form>
+{{#if getData}}
+<div>
+    <h1>
+        hola
+    </h1>
+</div>
+
+{{/if}}
