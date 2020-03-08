@@ -1,20 +1,13 @@
 const MongoClient = require("mongodb").MongoClient;
 
-const url = "mongodb://localhost:27017/";
-const client = new MongoClient(url, { useUnifiedTopology: true }); // useUnifiedTopology removes a warning
+const url = "mongodb+srv://mdbExplorerAdmin:9M2XvH29abRBP3hU@mongoexplorercluster-nymrk.mongodb.net/test?retryWrites=true&w=majority";
+const client = new MongoClient(url, {useNewUrlParser: true, useUnifiedTopology: true }); // useUnifiedTopology removes a warning
 
 
 function MongoUtils() {
   const mu = {};
 
-  let hostname = "localhost",
-    port = 27017;
-
-  mu.hostname = _ => (_ !== undefined ? ((hostname = _),mu) : hostname);
-  mu.port = _ => (_ !== undefined ? ((port = _),mu) : port);
-
   mu.connect = () =>{
-    const url = `mongodb://${hostname}:${port}`;
     
     const client = new MongoClient(url, {useNewUrlParser: true, useUnifiedTopology: true});
 
@@ -26,7 +19,7 @@ function MongoUtils() {
           return;
         }
       
-        console.log("Connected!");
+        console.log("Connected!!");
         resolve(client);
       });
     });
@@ -45,6 +38,23 @@ function MongoUtils() {
         return dbs;
       })
       .finally(() => client.close());
+  };
+
+  mu.collections = (dbName) => {
+    return mu.connect()
+      .then(client =>{
+        console.log("dbName to query", dbName);
+        return client
+          .db(dbName).listCollections().toArray();
+      });
+  };
+
+  mu.document = (dbName, colName) => {
+    mu.connect().then(client => {
+      const documentCol = client.db(dbName).collection(colName);
+
+      return documentCol.find().limit(20).toArray().finally(() => client.close());
+    });    
   };
 
   return mu;
