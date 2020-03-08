@@ -1,7 +1,10 @@
 # MongoExplorer
 
 A Web Page for explore the databases, collection, and documents of a url server
-Nota para john Guerra: Opción 2 (por la fecha) por lo que alcance a hacer es como opcion 0 :(
+
+##### Nota para john Guerra: 
+
+Opción 2 (por la fecha) por lo que alcance a hacer es como opcion 0 :(
 
 ## Getting Started
 
